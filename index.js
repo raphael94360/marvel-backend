@@ -16,10 +16,7 @@ app.get("/", (req, res) => {
 
 app.get("/characters", async (req, res) => {
   try {
-    const response = await axios.get(
-      "https://raphael-marvel-backend.herokuapp.com/characters?apiKey=" + apiKey
-      // "http://localhost:4000/characters?apiKey=" + apiKey
-    )
+    const response = await axios.get("https://raphael-marvel-backend.herokuapp.com/characters?apiKey=" + apiKey)
     res.status(200).json(response.data)
   } catch (error) {
     res.status(400).json({ message: error.message })
@@ -28,10 +25,7 @@ app.get("/characters", async (req, res) => {
 
 app.get("/comics", async (req, res) => {
   try {
-    const response = await axios.get(
-      `http://localhost:4000/comics?apiKey=${apiKey}&limit=${req.query.limit}`
-      // `https://raphael-marvel-backend.herokuapp.com/comics?apiKey=${apiKey}&limit=${req.query.limit}`
-    )
+    const response = await axios.get(`https://raphael-marvel-backend.herokuapp.com/comics?apiKey=${apiKey}&limit=${req.query.limit}`)
 
     res.status(200).json(response.data)
   } catch (error) {
