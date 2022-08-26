@@ -33,6 +33,6 @@ app.get("/comics", async (req, res) => {
   }
 })
 
-app.listen(process.env.PORT || 4000, () => {
+app.listen(process.env.PORT, () => {
   console.log("server started")
 })
