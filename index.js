@@ -5,6 +5,8 @@ const axios = require("axios")
 
 const apiKey = process.env.apiKey
 
+// apiKey=FwOjIYgTDXXx0z2m
+
 const app = express()
 app.use(cors())
 
@@ -16,7 +18,7 @@ app.get("/", (req, res) => {
 
 app.get("/characters", async (req, res) => {
   try {
-    const response = await axios.get("https://raphael-marvel-backend.herokuapp.com/characters?apiKey=" + apiKey)
+    const response = await axios.get("https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=" + apiKey)
     res.status(200).json(response.data)
   } catch (error) {
     res.status(400).json({ message: error.message })
@@ -25,7 +27,7 @@ app.get("/characters", async (req, res) => {
 
 app.get("/comics", async (req, res) => {
   try {
-    const response = await axios.get(`https://raphael-marvel-backend.herokuapp.com/comics?apiKey=${apiKey}&limit=${req.query.limit}`)
+    const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${apiKey}&limit=${req.query.limit}`)
 
     res.status(200).json(response.data)
   } catch (error) {
