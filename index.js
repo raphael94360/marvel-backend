@@ -3,9 +3,7 @@ const express = require("express")
 const cors = require("cors")
 const axios = require("axios")
 
-const apiKey = process.env.apiKey
-
-// apiKey=FwOjIYgTDXXx0z2m
+const apiKey = process.env.MARVEL_API_KEY
 
 const app = express()
 app.use(cors())
@@ -35,6 +33,24 @@ app.get("/comics", async (req, res) => {
   }
 })
 
-app.listen(process.env.PORT, () => {
+app.get("/characters/:characterID", async (req, res) => {
+  try {
+    const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/character/${req.params.characterID}?apiKey=${apiKey}`)
+    res.status(200).json(response.data)
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+})
+
+app.get("/comics/:characterID", async (req, res) => {
+  try {
+    const response = await axios.get(`https://lereacteur-marvel-api.herokuapp.com/comics/${req.params.characterID}?apiKey=${apiKey}`)
+    res.status(200).json(response.data)
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+})
+
+app.listen(process.env.PORT || 4000, () => {
   console.log("server started")
 })
