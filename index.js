@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 
 app.get("/comics", async (req, res) => {
   try {
-    const response = await axios.get(`http://localhost:4000/comics?apiKey=${apiKey}`)
+    const response = await axios.get(`https://raphael-marvel-backend.herokuapp.com/comics?apiKey=${apiKey}`)
 
     res.status(200).json(response.data)
   } catch (error) {
