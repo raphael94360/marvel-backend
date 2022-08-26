@@ -4,6 +4,7 @@ const cors = require("cors");
 const axios = require("axios");
 
 const apiKey = process.env.MARVEL_API_KEY;
+console.log(apiKey);
 
 const app = express();
 app.use(cors());
@@ -27,7 +28,7 @@ app.get("/characters", async (req, res) => {
 app.get("/comics", async (req, res) => {
   try {
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${apiKey}&limit=${req.query.limit}`
+      "https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=" + apiKey
     );
 
     res.status(200).json(response.data);
